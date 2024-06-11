@@ -4,7 +4,7 @@
     <p>{{ info | safe }}</p>
 
     <h2>Prediction Basis</h2>
-    <form id="form" method="post" action="{{ url_for('model') }}">
+    <form id="form" method="post" action="/model">
         <p><label>
             Level: <input name="level" value="{{ level }}"/>
         </label></p>
@@ -18,7 +18,12 @@
         </label></p>
         <br class="clear">
         <p><label>
-            Sanity: <input name="sanity" value="{{ sanity }}"/>
+            Sanity: <input name="sanity" value=" {{ sanity }}"/>
+        </label></p>
+        <br class="clear">
+        <p><label>
+           Retrain:
+           <input type="checkbox" name="retrain" value="no"/>
         </label></p>
         <br class="clear">
         <button type="submit">Predict Rarity</button>

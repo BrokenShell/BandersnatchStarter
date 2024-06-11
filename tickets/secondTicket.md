@@ -31,25 +31,25 @@ Stuck? Post in `labs-ds` or open a support ticket in the Hub!
 ## Guidance
 
 ### A. Notebook Exploration
-- [ ] Create a notebook for visualization experimentation
-- [ ] Create some charts based on the data you generated in Sprint 1
-- [ ] Check the Altair documentation for ideas
+- [x] Create a notebook for visualization experimentation
+- [x] Create some charts based on the data you generated in Sprint 1
+- [x] Check the Altair documentation for ideas
 
 ### B. Implement Chart Function
 - Starter File: `app/graph.py`
 - Suggested Graphing Library: Altair
 - Function Signature: `chart(df: DataFrame, x: str, y: str, target: str) -> Chart`
 
-- [ ] Is the function definition correct, including the correct parameters of a DataFrame, two strings for x and y, and a string for target? 
-- [ ] Is the properties dictionary complete, including four keys and their corresponding values for width, height, background, and padding? 
-- [ ] Is the Chart object created using the correct syntax and parameters, including the df, title, and mark_circle? Are the correct encodings used for x, y, color, and tooltip? Are the properties and configure dictionaries applied correctly using the correct syntax? 
-- [ ] Does the function return the correct object, a Chart?
-- [ ] Does the code follow the PEP style guide?
+- [x] Is the function definition correct, including the correct parameters of a DataFrame, two strings for x and y, and a string for target? 
+- [x] Is the properties dictionary complete, including four keys and their corresponding values for width, height, background, and padding? 
+- [x] Is the Chart object created using the correct syntax and parameters, including the df, title, and mark_circle? Are the correct encodings used for x, y, color, and tooltip? Are the properties and configure dictionaries applied correctly using the correct syntax? 
+- [x] Does the function return the correct object, a Chart?
+- [x] Does the code follow the PEP style guide?
 
 ### C. API Graph Integration
-- [ ] Make sure the graph is being serialized correctly using the `.to_json()` method
-- [ ] The display of the graph should be fairly automatic, double check by running the web app locally
-- [ ] Does the graph look good in the context of the Bandersnatch dark web theme?
+- [x] Make sure the graph is being serialized correctly using the `.to_json()` method
+- [x] The display of the graph should be fairly automatic, double check by running the web app locally
+- [x] Does the graph look good in the context of the Bandersnatch dark web theme?
 
 #### Example Chart
 ```python

@@ -6,11 +6,11 @@ from MonsterLab import Monster
 from flask import Flask, render_template, request
 from pandas import DataFrame
 
-from app.data import Database
-from app.graph import chart
-from app.machine import Machine
+from data import MongoDB
+from graph import chart
+from machine import Machine
 
-SPRINT = 0
+SPRINT = 3
 APP = Flask(__name__)
 
 
@@ -28,7 +28,7 @@ def home():
 def data():
     if SPRINT < 1:
         return render_template("data.html")
-    db = Database()
+    db = MongoDB('Collection')
     return render_template(
         "data.html",
         count=db.count(),
@@ -40,17 +40,17 @@ def data():
 def view():
     if SPRINT < 2:
         return render_template("view.html")
-    db = Database()
+    db = MongoDB('Collection')
     options = ["Level", "Health", "Energy", "Sanity", "Rarity"]
     x_axis = request.values.get("x_axis") or options[1]
     y_axis = request.values.get("y_axis") or options[2]
     target = request.values.get("target") or options[4]
     graph = chart(
-        df=db.dataframe(),
+        df=db.dataframe().drop(columns=['_id'], errors='ignore'),
         x=x_axis,
         y=y_axis,
         target=target,
-    ).to_json()
+    ).to_json(format="vega")
     return render_template(
         "view.html",
         options=options,
@@ -66,11 +66,11 @@ def view():
 def model():
     if SPRINT < 3:
         return render_template("model.html")
-    db = Database()
+    db = MongoDB('Collection')
     options = ["Level", "Health", "Energy", "Sanity", "Rarity"]
     filepath = os.path.join("app", "model.joblib")
     if not os.path.exists(filepath):
-        df = db.dataframe()
+        df = db.dataframe().drop(columns=['_id'], errors='ignore')
         machine = Machine(df[options])
         machine.save(filepath)
     else:
