@@ -10,7 +10,7 @@ from app.data import Database
 from app.graph import chart
 from app.machine import Machine
 
-SPRINT = 0
+SPRINT = 1
 APP = Flask(__name__)
 
 
@@ -28,7 +28,10 @@ def home():
 def data():
     if SPRINT < 1:
         return render_template("data.html")
-    db = Database()
+
+    # Change the collection name from 'bandersnatch' to 'monsters'
+    db = Database("bandersnatch")
+
     return render_template(
         "data.html",
         count=db.count(),
@@ -40,7 +43,10 @@ def data():
 def view():
     if SPRINT < 2:
         return render_template("view.html")
-    db = Database()
+
+
+    db = Database("bandersnatch")
+
     options = ["Level", "Health", "Energy", "Sanity", "Rarity"]
     x_axis = request.values.get("x_axis") or options[1]
     y_axis = request.values.get("y_axis") or options[2]
@@ -66,9 +72,12 @@ def view():
 def model():
     if SPRINT < 3:
         return render_template("model.html")
-    db = Database()
+
+
+    db = Database("bandersnatch")
+
     options = ["Level", "Health", "Energy", "Sanity", "Rarity"]
-    filepath = os.path.join("app", "model.joblib")
+    filepath = os.path.join("../app", "model.joblib")
     if not os.path.exists(filepath):
         df = db.dataframe()
         machine = Machine(df[options])
